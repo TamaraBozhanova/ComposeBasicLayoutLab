@@ -3,12 +3,14 @@ package com.tamarabozhanova.composebasiclayoutlab
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -47,7 +49,7 @@ fun SearchBar(
             backgroundColor = MaterialTheme.colors.background
         ),
         placeholder = {
-            Text(text = stringResource(id = R.string.pplaceholder_search))
+            Text(text = stringResource(id = R.string.placeholder_search))
         },
         modifier = modifier
             .fillMaxWidth()
@@ -62,7 +64,13 @@ fun AlignYourBodyElement(
     Column(
         modifier = modifier
     ) {
-
+        Image(
+            painter = painterResource(R.drawable.ab1_inversions),
+            contentDescription = null
+        )
+        Text(
+            text = stringResource(R.string.ab1_inversions)
+        )
     }
 }
 
