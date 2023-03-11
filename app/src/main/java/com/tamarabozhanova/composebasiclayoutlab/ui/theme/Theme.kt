@@ -34,8 +34,6 @@ private val LightColorPalette  = lightColors(
 @Composable
 fun ComposeBasicLayoutLabTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {

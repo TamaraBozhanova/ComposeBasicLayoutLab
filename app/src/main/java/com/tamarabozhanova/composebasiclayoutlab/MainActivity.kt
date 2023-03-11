@@ -3,13 +3,19 @@ package com.tamarabozhanova.composebasiclayoutlab
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -59,21 +65,38 @@ fun SearchBar(
 
 @Composable
 fun AlignYourBodyElement(
+    @DrawableRes drawable: Int,
+    @StringRes text: Int,
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(R.drawable.ab1_inversions),
-            contentDescription = null
+            painter = painterResource(drawable),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(88.dp)
+                .clip(CircleShape)
         )
         Text(
-            text = stringResource(R.string.ab1_inversions)
+            text = stringResource(text)
         )
     }
 }
 
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun AlignYourBodyElementPreview(){
+    ComposeBasicLayoutLabTheme {
+        AlignYourBodyElement(
+            text = R.string.ab1_inversions,
+            drawable = R.drawable.ab1_inversions,
+            modifier = Modifier.padding(8.dp))
+    }
+}
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
