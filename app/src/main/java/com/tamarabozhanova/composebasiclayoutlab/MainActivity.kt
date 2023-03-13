@@ -50,11 +50,22 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+fun ComposeBasicLayoutLabApp() {
+    ComposeBasicLayoutLabTheme {
+        Scaffold(
+            bottomBar = { AppBottomNavigation() }
+        ) { padding ->
+            HomeScreen(Modifier.padding(padding))
+        }
+    }
+}
+
+@Composable
 fun SearchBar(
     modifier: Modifier = Modifier
 ) {
     TextField(
-        value = "Search",
+        value = "",
         onValueChange = {},
         leadingIcon = {
             Icon(
@@ -62,7 +73,7 @@ fun SearchBar(
                 contentDescription = null
             )},
         colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = MaterialTheme.colors.background
+            backgroundColor = MaterialTheme.colors.surface
         ),
         placeholder = {
             Text(text = stringResource(id = R.string.placeholder_search))
@@ -188,7 +199,6 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             .verticalScroll(rememberScrollState())
             .padding(vertical = 16.dp)
     ){
-        Spacer(Modifier.height(16.dp))
         SearchBar(Modifier.padding(horizontal = 16.dp))
         HomeSection(title = R.string.align_your_body) {
             AlignYourBodyRow()
@@ -196,7 +206,6 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         HomeSection(title = R.string.favorite_collections) {
             FavoriteCollectionsGrid()
         }
-        Spacer(Modifier.height(16.dp))
     }
 }
 
@@ -232,6 +241,14 @@ private fun AppBottomNavigation(modifier: Modifier = Modifier) {
             selected = false,
             onClick = {}
         )
+    }
+}
+
+@Preview
+@Composable
+fun ComposeBasicLayoutLabAppPreview() {
+    ComposeBasicLayoutLabTheme {
+        ComposeBasicLayoutLabApp()
     }
 }
 
@@ -293,7 +310,7 @@ fun AlignYourBodyElementPreview(){
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun AlignYourBodyRowPreview(){
-    ComposeBasicLayoutLabTheme() {
+    ComposeBasicLayoutLabTheme {
         AlignYourBodyRow()
     }
 }
@@ -301,7 +318,7 @@ fun AlignYourBodyRowPreview(){
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun SearchBarPreview() {
-    ComposeBasicLayoutLabTheme() {
+    ComposeBasicLayoutLabTheme {
         SearchBar(Modifier.padding(8.dp))
     }
 }
